@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Praxipolis — Для агентств занятости</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue-950: #0b0f2a;
+    --blue-900: #0f1538;
+    --blue-800: #182060;
+    --blue-700: #1e2d8a;
+    --blue-500: #3042a8;
+    --blue-400: #4d5fc4;
+    --blue-300: #7b8ee0;
+    --gold-500: #c87c1a;
+    --gold-400: #d99a36;
+    --gold-300: #e8b85a;
+    --gold-200: #f2cf8a;
+    --stone-white: #f5f2ec;
+    --stone-warm: #e8e0d0;
+    --slate-light: #8a9ab8;
+    --slate-mid: #5a6880;
+    --green-500: #1a7a50;
+    --green-400: #2a8a5e;
+    --green-300: #3aaa78;
+    --border: rgba(77,95,196,0.2);
+    --border-gold: rgba(200,124,26,0.3);
+    --border-green: rgba(42,138,94,0.35);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  @page { size: A4; margin: 0; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--blue-950);
+    color: var(--stone-warm);
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 80% 10%, rgba(77,95,196,0.12), transparent),
+      radial-gradient(ellipse 50% 40% at 20% 80%, rgba(200,124,26,0.06), transparent),
+      repeating-linear-gradient(-30deg, transparent, transparent 40px, rgba(77,95,196,0.025) 40px, rgba(77,95,196,0.025) 41px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    top: -20%; right: -10%;
+    width: 55%; height: 70%;
+    background: url("data:image/svg+xml,%3Csvg width='400' height='400' viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='200' cy='200' r='60' fill='none' stroke='rgba(77,95,196,0.08)' stroke-width='1'/%3E%3Ccircle cx='200' cy='200' r='90' fill='none' stroke='rgba(77,95,196,0.06)' stroke-width='1'/%3E%3Ccircle cx='200' cy='200' r='120' fill='none' stroke='rgba(77,95,196,0.05)' stroke-width='1'/%3E%3Ccircle cx='200' cy='200' r='155' fill='none' stroke='rgba(77,95,196,0.04)' stroke-width='1'/%3E%3Ccircle cx='200' cy='200' r='190' fill='none' stroke='rgba(77,95,196,0.03)' stroke-width='1'/%3E%3C/svg%3E") center/contain no-repeat;
+    opacity: 0.8;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page {
+    position: relative;
+    z-index: 1;
+    padding: 10mm 13mm;
+    display: grid;
+    gap: 0;
+  }
+  @media screen {
+    .page:first-of-type {
+      padding-bottom: 0;
+    }
+    .page + .page {
+      padding-top: 0;
+    }
+  }
+  @media print {
+    .page + .page { page-break-before: always; }
+  }
+
+  /* ── HEADER ── */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 6mm;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 7mm;
+  }
+
+  .logo { display: flex; align-items: center; gap: 8px; }
+  .logo-mark { width: 28px; height: 28px; }
+  .logo-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px; font-weight: 600;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--stone-white);
+  }
+  .logo-text span { color: var(--gold-400); }
+
+  .header-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--slate-light);
+    border: 1px solid var(--border);
+    padding: 4px 10px; border-radius: 20px;
+  }
+
+  /* ── HERO ── */
+  .hero { margin-bottom: 6mm; }
+
+  .hero-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold-400); margin-bottom: 4mm;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .hero-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--gold-400); }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 31px; font-weight: 300;
+    line-height: 1.15; color: var(--stone-white);
+    max-width: 150mm; margin-bottom: 4mm;
+  }
+  .hero h1 em { font-style: italic; color: var(--gold-300); }
+  .hero h1 strong { font-weight: 600; }
+
+  .hero-sub {
+    font-size: 11px; font-weight: 300;
+    color: var(--slate-light); line-height: 1.6;
+    max-width: 135mm;
+  }
+
+  /* ── PAIN BLOCK ── */
+  .pain-block {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold-500);
+    border-radius: 6px; padding: 5mm 6mm; margin-bottom: 6mm;
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4mm;
+  }
+  .pain-stat {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px; font-weight: 600;
+    color: var(--gold-300); line-height: 1; margin-bottom: 2px;
+  }
+  .pain-label { font-size: 11px; font-weight: 400; color: var(--slate-light); line-height: 1.4; }
+
+  /* ── SECTION TITLES ── */
+  .section-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7.5px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--slate-mid); margin-bottom: 4mm;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  /* ── VALUE PROPS FOR AGENCIES ── */
+  .agency-value-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; margin-bottom: 6mm;
+  }
+
+  .agency-value-card {
+    background: linear-gradient(135deg, rgba(30,45,138,0.35), rgba(15,21,56,0.55));
+    border: 1px solid var(--border); border-radius: 8px; padding: 4.5mm 5mm;
+    position: relative; overflow: hidden;
+  }
+  .agency-value-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--gold-500), var(--blue-400));
+  }
+
+  .av-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px; font-weight: 600;
+    color: var(--stone-white); line-height: 1; margin-bottom: 1.5mm;
+  }
+  .av-num .unit { font-size: 18px; color: var(--gold-400); }
+  .av-title { font-size: 11px; font-weight: 600; color: var(--stone-warm); margin-bottom: 1mm; }
+  .av-desc { font-size: 10px; color: var(--slate-light); line-height: 1.45; }
+
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">
+      <svg class="logo-mark" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="8,16 16,12 24,16 16,20" fill="rgba(77,95,196,0.7)"/>
+        <polygon points="8,16 8,32 16,28 16,20" fill="rgba(48,66,168,0.9)"/>
+        <polygon points="16,20 24,16 24,32 16,28" fill="rgba(36,50,128,1)"/>
+        <polygon points="24,16 36,10 44,14 32,20" fill="rgba(200,144,48,0.9)"/>
+        <polygon points="24,16 24,24 32,28 32,20" fill="rgba(160,100,20,1)"/>
+        <polygon points="32,20 44,14 44,22 32,28" fill="rgba(120,80,10,1)"/>
+        <polygon points="8,32 16,28 24,32 16,36" fill="rgba(77,95,196,0.6)"/>
+        <polygon points="8,32 8,40 16,36" fill="rgba(48,66,168,0.8)"/>
+        <polygon points="24,28 36,22 44,26 32,32" fill="rgba(200,144,48,0.5)"/>
+        <polygon points="24,28 24,36 32,40 32,32" fill="rgba(36,50,128,0.9)"/>
+        <polygon points="8,40 16,36 24,40 16,44" fill="rgba(77,95,196,0.5)"/>
+        <polygon points="8,40 8,52 16,48 16,44" fill="rgba(48,66,168,0.7)"/>
+        <polygon points="16,44 24,40 24,52 16,48" fill="rgba(36,50,128,0.8)"/>
+      </svg>
+      <div class="logo-text">PRAXI<span>·</span>POLIS</div>
+    </div>
+    <div class="header-badge">Коммерческое предложение · 2026</div>
+  </header>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-label">Для агентств занятости · Польша и ЕС</div>
+    <h1>Ваши клиенты хотят<br>сотрудников <em>готовых с первого дня.</em><br><strong>Теперь вы это гарантируете.</strong></h1>
+    <p class="hero-sub">Тренажёр под реальный процесс — склад, фасовка, выкладка, доставка. Кандидат проходит онлайн до первой смены. Клиент получает человека, который знает, что делать.</p>
+  </div>
+
+  <!-- PAIN STATS -->
+  <div class="pain-block">
+    <div class="pain-item">
+      <div class="pain-stat">70%</div>
+      <div class="pain-label">нового сотрудника уволятся в первые 90 дней — из-за стресса и растерянности</div>
+    </div>
+    <div class="pain-item">
+      <div class="pain-stat">€500+</div>
+      <div class="pain-label">стоит агентству закрыть одну позицию заново</div>
+    </div>
+    <div class="pain-item">
+      <div class="pain-stat">3–5×</div>
+      <div class="pain-label">выше текучка у неподготовленных сотрудников в первые 2 недели</div>
+    </div>
+  </div>
+
+  <!-- SECTION: ЧТО ЭТО ДАЁТ АГЕНТСТВУ -->
+  <div class="section-title">Что это даёт вашему агентству</div>
+  <div class="agency-value-grid">
+    <div class="agency-value-card">
+      <div class="av-num">↑<span class="unit"> Конкурентное</span></div>
+      <div class="av-title">преимущество на рынке</div>
+      <div class="av-desc">Вы — единственное агентство, которое поставляет уже обученных кандидатов.</div>
+    </div>
+    <div class="agency-value-card">
+      <div class="av-num">−40<span class="unit">%</span></div>
+      <div class="av-title">возвратов и претензий от клиентов</div>
+      <div class="av-desc">Меньше звонков «ваш человек не справляется», меньше повторных замен.</div>
+    </div>
+    <div class="agency-value-card">
+      <div class="av-num">×3<span class="unit">.5</span></div>
+      <div class="av-title">быстрее усваивают рабочие стандарты</div>
+      <div class="av-desc">Кандидат отрабатывает навык до первой смены — не за счёт времени клиента.</div>
+    </div>
+    <div class="agency-value-card">
+      <div class="av-num">1<span class="unit"> модуль</span></div>
+      <div class="av-title">для любого потока кандидатов</div>
+      <div class="av-desc">Один тренажёр работает для 50 и для 5 000 человек.</div>
+    </div>
+  </div>
+
+</div><!-- конец первой страницы -->
+
+<!-- ВТОРАЯ СТРАНИЦА -->
+<div class="page">
+
+<style>
+  /* ── PROJECTS ── */
+  .projects-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 3mm; margin-bottom: 6mm;
+  }
+  .project-card {
+    border: 1px solid var(--border); border-radius: 8px; padding: 4mm 5mm;
+    background: linear-gradient(135deg, rgba(30,45,138,0.25), rgba(11,15,42,0.5));
+    position: relative; overflow: hidden;
+  }
+  .project-card::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--blue-400), var(--gold-500)); opacity: 0.4;
+  }
+  .project-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gold-400); background: rgba(200,124,26,0.1);
+    border: 1px solid rgba(200,124,26,0.2); border-radius: 3px;
+    padding: 2px 6px; display: inline-block; margin-bottom: 2mm;
+  }
+  .project-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px; font-weight: 600;
+    color: var(--stone-white); line-height: 1.2; margin-bottom: 2mm;
+  }
+  .project-desc { font-size: 10px; color: var(--slate-light); line-height: 1.45; margin-bottom: 3mm; }
+  .project-result { display: flex; align-items: baseline; gap: 5px; }
+  .project-result-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 600; color: var(--gold-300); line-height: 1;
+  }
+  .project-result-label { font-size: 9px; color: var(--slate-light); line-height: 1.3; }
+
+  /* ── ECONOMICS ── */
+  .economics-block {
+    background: linear-gradient(135deg, rgba(200,124,26,0.08), rgba(30,45,138,0.3));
+    border: 1px solid var(--border-gold); border-radius: 8px; padding: 5mm 6mm; margin-bottom: 6mm;
+    display: grid; grid-template-columns: 1fr auto; gap: 6mm; align-items: center;
+  }
+  .econ-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px; font-weight: 400; color: var(--stone-white); margin-bottom: 2mm;
+  }
+  .econ-formula {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; color: var(--slate-light); line-height: 1.9;
+  }
+  .econ-formula .hl { color: var(--gold-300); }
+  .econ-formula .hl2 { color: #3aaa78; }
+  .econ-result {
+    text-align: center; padding: 4mm 6mm;
+    border: 1px solid var(--border-gold); border-radius: 6px;
+    background: rgba(200,124,26,0.1); white-space: nowrap;
+  }
+  .econ-result-label {
+    font-size: 8px; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.1em;
+    color: var(--gold-400); text-transform: uppercase; margin-bottom: 1mm;
+  }
+  .econ-result-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px; font-weight: 600; color: var(--stone-white); line-height: 1;
+  }
+  .econ-result-sub { font-size: 8px; color: var(--slate-light); margin-top: 1mm; }
+
+  /* ── BOTTOM GRID ── */
+  .bottom-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin-bottom: 6mm;
+  }
+
+  /* ── PILOT OFFER ── */
+  .offer-block {
+    border: 1px solid var(--border-green);
+    border-radius: 8px; padding: 5mm;
+    background: linear-gradient(135deg, rgba(42,138,94,0.08), rgba(11,15,42,0.5));
+    position: relative; overflow: hidden;
+  }
+  .offer-block::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--green-400), var(--blue-400));
+  }
+  .offer-header {
+    display: flex; align-items: center; gap: 6px; margin-bottom: 3mm;
+  }
+  .offer-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--green-300); background: rgba(42,138,94,0.15);
+    border: 1px solid rgba(42,138,94,0.3); border-radius: 3px; padding: 2px 6px;
+  }
+  .offer-title { font-size: 11px; font-weight: 600; color: var(--stone-white); }
+  .offer-list { list-style: none; display: flex; flex-direction: column; gap: 2mm; }
+  .offer-list li {
+    font-size: 11px; color: var(--slate-light);
+    display: flex; align-items: flex-start; gap: 5px; line-height: 1.4;
+  }
+  .offer-list li::before { content: '→'; color: var(--green-300); flex-shrink: 0; }
+  .offer-price {
+    margin-top: 3.5mm; padding-top: 3mm; border-top: 1px solid var(--border-green);
+    font-size: 10px; color: var(--slate-light); line-height: 1.5;
+  }
+  .offer-price strong { color: var(--stone-white); font-weight: 600; }
+
+  /* ── CTA ── */
+  .cta-block {
+    background: linear-gradient(135deg, rgba(30,45,138,0.5), rgba(48,66,168,0.3));
+    border: 1px solid var(--blue-400); border-radius: 8px; padding: 5mm;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .cta-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px; font-weight: 400; color: var(--stone-white);
+    line-height: 1.25; margin-bottom: 3mm;
+  }
+  .cta-headline em { font-style: italic; color: var(--gold-300); }
+  .cta-note { font-size: 10px; color: var(--slate-light); margin-bottom: 4mm; line-height: 1.5; }
+  .cta-contacts { display: flex; flex-direction: column; gap: 2mm; }
+  .cta-contact-line { display: flex; align-items: center; gap: 6px; }
+  .contact-chip {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7.5px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--gold-400); background: rgba(200,124,26,0.12);
+    border: 1px solid rgba(200,124,26,0.25); border-radius: 3px; padding: 2px 5px; white-space: nowrap;
+  }
+  .contact-val { font-size: 10px; color: var(--stone-warm); }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border); padding-top: 4mm;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-left {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7.5px; color: var(--slate-mid); letter-spacing: 0.1em;
+  }
+  .footer-right { display: flex; gap: 6mm; align-items: center; }
+  .footer-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--slate-mid); border: 1px solid var(--border);
+    padding: 2px 7px; border-radius: 10px;
+  }
+</style>
+
+  <!-- SECTION: ПРИМЕРЫ ПРОЕКТОВ -->
+  <div class="section-title">Примеры симуляций в производстве</div>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-tag">Склад · e-commerce</div>
+      <div class="project-title">Складской тренажёр</div>
+      <div class="project-desc">Приём товара, WMS-навигация, техника безопасности. До первой смены.</div>
+      <div class="project-result">
+        <div class="project-result-num">−45%</div>
+        <div class="project-result-label">ошибок<br>в первую неделю</div>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-tag">Ритейл · мерчендайзинг</div>
+      <div class="project-title">Shelf Master</div>
+      <div class="project-desc">Планограммы, выкладка, стандарты сети. 100+ сценариев, без наставника на смене.</div>
+      <div class="project-result">
+        <div class="project-result-num">95%</div>
+        <div class="project-result-label">сотрудников<br>готовы с первого дня</div>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-tag">Агентство · горничные / housekeeping</div>
+      <div class="project-title">CleanUp Master</div>
+      <div class="project-desc">Реальные фото номеров, поиск дефектов, стандарты бренда. Деплой за 7 дней.</div>
+      <div class="project-result">
+        <div class="project-result-num">90 мин</div>
+        <div class="project-result-label">вместо 8 часов<br>традиционного инструктажа</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ECONOMICS — переписана для агентства -->
+  <div class="economics-block">
+    <div>
+      <div class="econ-title">Математика для агентства с потоком 200 чел/мес</div>
+      <div class="econ-formula">
+        <span class="hl">200 сотрудников</span> × <span class="hl">€400 экономии</span> на заменах = <span class="hl">€80 000 / год</span><br>
+        Подписка Praxipolis: <span class="hl">~€1 500 / мес</span> = <span class="hl">€18 000 / год</span><br>
+        <span class="hl2">Чистая экономия: €62 000 в год. ROI — уже в первом квартале.</span>
+      </div>
+    </div>
+    <div class="econ-result">
+      <div class="econ-result-label">Типовой ROI</div>
+      <div class="econ-result-num">4–6×</div>
+      <div class="econ-result-sub">в первые 6 месяцев</div>
+    </div>
+  </div>
+
+  <!-- BOTTOM: PILOT OFFER + CTA -->
+  <div class="bottom-grid">
+    <div class="offer-block">
+      <div class="offer-header">
+        <span class="offer-badge">Пилот для агентств</span>
+        <div class="offer-title">Что входит в пилот</div>
+      </div>
+      <ul class="offer-list">
+        <li>1 симуляция под вашу типовую позицию (склад, фасовка, мерчендайзинг)</li>
+        <li>До 200 кандидатов в течение пилота</li>
+        <li>Аналитика готовности по каждому кандидату</li>
+        <li>Работает с телефона, без установки приложений</li>
+        <li>Запуск за 14 дней с момента брифа</li>
+      </ul>
+      <div class="offer-price">
+        Стоимость пилота: <strong>специальные условия</strong> для первых партнёров-агентств.<br>
+        Обсудим формат под ваш объём на 30-минутном звонке.
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <div>
+        <div class="cta-headline">Готовы показать,<br>как это работает <em>для вашего агентства</em></div>
+        <div class="cta-note">Живая симуляция, конкретные цифры для вашего потока. Без обязательств.</div>
+      </div>
+      <div class="cta-contacts">
+        <div class="cta-contact-line">
+          <span class="contact-chip">Web</span>
+          <span class="contact-val">praxipolis.com</span>
+        </div>
+        <div class="cta-contact-line">
+          <span class="contact-chip">Email</span>
+          <span class="contact-val">egor@praxipolis.com</span>
+        </div>
+        <div class="cta-contact-line">
+          <span class="contact-chip">LinkedIn</span>
+          <span class="contact-val">linkedin.com/in/egor-grishchenko-1815295/</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left">PRAXIPOLIS · Simulations for Real Work · 2026</div>
+    <div class="footer-right">
+      <span class="footer-tag">SCORM / xAPI</span>
+      <span class="footer-tag">Web-based · No install</span>
+      <span class="footer-tag">AI-powered production</span>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
