@@ -99,7 +99,25 @@
   }
 
   .logo { display: flex; align-items: center; gap: 8px; }
-  .logo-mark { width: 28px; height: 28px; }
+  /* Logo mark — 2×2 coloured tiles (matches landing page) */
+  .logo-mark-grid {
+    width: 26px;
+    height: 26px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 2px;
+    flex-shrink: 0;
+  }
+  .logo-mark-grid s {
+    display: block;
+    border-radius: 2px;
+    background: var(--gold-400);
+    font-style: normal;
+  }
+  .logo-mark-grid s:nth-child(2) { background: var(--blue-500); }
+  .logo-mark-grid s:nth-child(3) { background: var(--blue-400); }
+  .logo-mark-grid s:nth-child(4) { background: var(--gold-500); opacity: .55; }
   .logo-text {
     font-family: 'Cormorant Garamond', serif;
     font-size: 15px; font-weight: 600;
@@ -160,11 +178,21 @@
   /* ── SECTION TITLES ── */
   .section-title {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 7.5px; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--slate-mid); margin-bottom: 4mm;
-    display: flex; align-items: center; gap: 8px;
+    font-size: 7.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-500);
+    margin-bottom: 4mm;
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
-  .section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border-gold);
+  }
 
   /* ── VALUE PROPS FOR AGENCIES ── */
   .agency-value-grid {
@@ -190,6 +218,163 @@
   .av-title { font-size: 11px; font-weight: 600; color: var(--stone-warm); margin-bottom: 1mm; }
   .av-desc { font-size: 10px; color: var(--slate-light); line-height: 1.45; }
 
+  /* ══════════════════════════════════════════
+     MOBILE RESPONSIVE  (screen ≤ 760px)
+     Print / desktop layout unchanged.
+     ══════════════════════════════════════════ */
+  @media screen and (max-width: 760px) {
+
+    /* Remove A4 fixed width, let body fill the screen */
+    body {
+      width: 100%;
+      min-height: unset;
+    }
+
+    .page {
+      padding: 6vw 5vw;
+    }
+
+    /* Second "page" — no forced page-break on screen */
+    .page[style*="page-break-before"] {
+      page-break-before: auto !important;
+      padding-top: 6vw !important;
+    }
+
+    /* ── HEADER ── */
+    header {
+      flex-wrap: wrap;
+      gap: 8px;
+      padding-bottom: 4vw;
+      margin-bottom: 5vw;
+    }
+    .logo-text { font-size: 18px; }
+    .logo-mark-grid { width: 32px; height: 32px; }
+    .header-badge { font-size: 9px; }
+
+    /* ── HERO ── */
+    .hero { margin-bottom: 5vw; }
+    .hero-label { font-size: 10px; margin-bottom: 3vw; }
+    .hero h1 {
+      font-size: 28px;
+      max-width: 100%;
+      margin-bottom: 3vw;
+    }
+    .hero-sub {
+      font-size: 14px;
+      max-width: 100%;
+      line-height: 1.65;
+    }
+
+    /* ── SECTION TITLES ── */
+    .section-title {
+      font-size: 10px;
+      margin-bottom: 3vw;
+    }
+
+    /* ── PAIN BLOCK ── */
+    .pain-block {
+      grid-template-columns: 1fr;
+      gap: 3vw;
+      padding: 4vw 5vw;
+      margin-bottom: 5vw;
+    }
+    .pain-stat { font-size: 34px; }
+    .pain-label { font-size: 13px; }
+
+    /* ── METRICS ── */
+    .metrics-row {
+      grid-template-columns: 1fr;
+      gap: 3vw;
+      margin-bottom: 5vw;
+    }
+    .metric-card { padding: 4vw; }
+    .metric-number { font-size: 44px; }
+    .metric-number .unit { font-size: 26px; }
+    .metric-desc { font-size: 13px; }
+
+    /* ── HOW IT WORKS ── */
+    .how-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5vw;
+      margin-bottom: 5vw;
+    }
+    .step-num { font-size: 10px; }
+    .step-title { font-size: 13px; }
+    .step-desc { font-size: 12px; }
+
+    /* ── SEGMENTS ── */
+    .segments-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5vw;
+      margin-bottom: 5vw;
+    }
+    .segment-card { padding: 3vw; }
+    .segment-name { font-size: 12px; }
+    .segment-note { font-size: 12px; }
+    .segment-icon svg { width: 34px; height: 34px; }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      grid-template-columns: 1fr;
+      gap: 3vw;
+      margin-bottom: 5vw;
+    }
+    .project-card { padding: 4vw 5vw; }
+    .project-img {
+      width: calc(100% + 10vw);
+      margin: -4vw -5vw 3vw -5vw;
+      height: 48vw;
+    }
+    .project-tag { font-size: 9px; }
+    .project-title { font-size: 18px; }
+    .project-desc { font-size: 13px; }
+    .project-result-num { font-size: 28px; }
+    .project-result-label { font-size: 12px; }
+
+    /* ── ECONOMICS ── */
+    .economics-block {
+      grid-template-columns: 1fr;
+      gap: 4vw;
+      padding: 4vw 5vw;
+      margin-bottom: 5vw;
+    }
+    .econ-title { font-size: 18px; margin-bottom: 3vw; }
+    .econ-formula { font-size: 12px; line-height: 2; }
+    .econ-result { padding: 3vw 4vw; }
+    .econ-result-label { font-size: 10px; }
+    .econ-result-num { font-size: 36px; }
+    .econ-result-sub { font-size: 11px; }
+
+    /* ── BOTTOM GRID ── */
+    .bottom-grid {
+      grid-template-columns: 1fr;
+      gap: 3vw;
+      margin-bottom: 5vw;
+    }
+    .offer-block { padding: 4vw; }
+    .offer-title { font-size: 15px; margin-bottom: 3vw; }
+    .offer-list { gap: 2.5vw; }
+    .offer-list li { font-size: 14px; }
+
+    .cta-block { padding: 4vw; }
+    .cta-headline { font-size: 20px; margin-bottom: 3vw; }
+    .cta-note { font-size: 13px; margin-bottom: 4vw; }
+    .cta-contacts { gap: 2.5vw; }
+    .contact-chip { font-size: 9px; }
+    .contact-val { font-size: 13px; }
+
+    /* ── FOOTER ── */
+    footer {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 3vw;
+      padding-top: 4vw;
+    }
+    .footer-left { font-size: 9px; }
+    .footer-right { flex-wrap: wrap; gap: 2vw; }
+    .footer-tag { font-size: 9px; }
+  }
+
 </style>
 </head>
 <body>
@@ -198,21 +383,7 @@
   <!-- HEADER -->
   <header>
     <div class="logo">
-      <svg class="logo-mark" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="8,16 16,12 24,16 16,20" fill="rgba(77,95,196,0.7)"/>
-        <polygon points="8,16 8,32 16,28 16,20" fill="rgba(48,66,168,0.9)"/>
-        <polygon points="16,20 24,16 24,32 16,28" fill="rgba(36,50,128,1)"/>
-        <polygon points="24,16 36,10 44,14 32,20" fill="rgba(200,144,48,0.9)"/>
-        <polygon points="24,16 24,24 32,28 32,20" fill="rgba(160,100,20,1)"/>
-        <polygon points="32,20 44,14 44,22 32,28" fill="rgba(120,80,10,1)"/>
-        <polygon points="8,32 16,28 24,32 16,36" fill="rgba(77,95,196,0.6)"/>
-        <polygon points="8,32 8,40 16,36" fill="rgba(48,66,168,0.8)"/>
-        <polygon points="24,28 36,22 44,26 32,32" fill="rgba(200,144,48,0.5)"/>
-        <polygon points="24,28 24,36 32,40 32,32" fill="rgba(36,50,128,0.9)"/>
-        <polygon points="8,40 16,36 24,40 16,44" fill="rgba(77,95,196,0.5)"/>
-        <polygon points="8,40 8,52 16,48 16,44" fill="rgba(48,66,168,0.7)"/>
-        <polygon points="16,44 24,40 24,52 16,48" fill="rgba(36,50,128,0.8)"/>
-      </svg>
+      <div class="logo-mark-grid"><s></s><s></s><s></s><s></s></div>
       <div class="logo-text">PRAXI<span>·</span>POLIS</div>
     </div>
     <div class="header-badge">Коммерческое предложение · 2026</div>
@@ -227,6 +398,7 @@
   </div>
 
   <!-- PAIN STATS -->
+  <div class="section-title">Проблемы при стандартном обучении</div>
   <div class="pain-block">
     <div class="pain-item">
       <div class="pain-stat">70%</div>
@@ -286,6 +458,31 @@
     content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
     background: linear-gradient(90deg, var(--blue-400), var(--gold-500)); opacity: 0.4;
   }
+  /* ── PROJECT IMAGE ── */
+  .project-img {
+    width: calc(100% + 10mm);   /* bleed beyond card padding */
+    margin: -4mm -5mm 3mm -5mm;
+    height: 28mm;
+    overflow: hidden;
+    border-radius: 7px 7px 0 0;
+    position: relative;
+  }
+  .project-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    filter: brightness(0.85) saturate(0.9);
+  }
+  /* subtle overlay so text below stays readable */
+  .project-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 40%, rgba(11,15,42,0.55) 100%);
+  }
+
   .project-tag {
     font-family: 'JetBrains Mono', monospace;
     font-size: 7px; letter-spacing: 0.1em; text-transform: uppercase;
@@ -417,33 +614,42 @@
 </style>
 
   <!-- SECTION: ПРИМЕРЫ ПРОЕКТОВ -->
-  <div class="section-title">Примеры симуляций в производстве</div>
+  <div class="section-title">Примеры проектов</div>
   <div class="projects-grid">
     <div class="project-card">
-      <div class="project-tag">Склад · e-commerce</div>
-      <div class="project-title">Складской тренажёр</div>
-      <div class="project-desc">Приём товара, WMS-навигация, техника безопасности. До первой смены.</div>
+      <div class="project-img">
+        <img src="Hotel_cleaner_edit.jpeg" alt="Housekeeping Quality Game">
+      </div>
+      <div class="project-tag">Hotel Group · Стандарты качества</div>
+      <div class="project-title">Housekeeping Quality Game</div>
+      <div class="project-desc">Симуляция стандартов уборки и качества для горничных: работа с чек-листами, ситуационные задачи, контроль ошибок.</div>
       <div class="project-result">
-        <div class="project-result-num">−45%</div>
-        <div class="project-result-label">ошибок<br>в первую неделю</div>
+        <div class="project-result-num">90 мин</div>
+        <div class="project-result-label">симуляции вместо<br>целого дня обучения</div>
       </div>
     </div>
     <div class="project-card">
-      <div class="project-tag">Ритейл · мерчендайзинг</div>
+      <div class="project-img">
+        <img src="shelf_master.jpg" alt="Shelf Master">
+      </div>
+      <div class="project-tag">Ритейл · сеть магазинов</div>
       <div class="project-title">Shelf Master</div>
-      <div class="project-desc">Планограммы, выкладка, стандарты сети. 100+ сценариев, без наставника на смене.</div>
+      <div class="project-desc">Интерактивный курс для мерчендайзеров: планограммы, возвраты, работа с кассой. Без наставника на смене.</div>
       <div class="project-result">
         <div class="project-result-num">95%</div>
         <div class="project-result-label">сотрудников<br>готовы с первого дня</div>
       </div>
     </div>
     <div class="project-card">
-      <div class="project-tag">Агентство · горничные / housekeeping</div>
-      <div class="project-title">CleanUp Master</div>
-      <div class="project-desc">Реальные фото номеров, поиск дефектов, стандарты бренда. Деплой за 7 дней.</div>
+      <div class="project-img">
+        <img src="Alisa_neutral.png" alt="Delivery Ace">
+      </div>
+      <div class="project-tag">Доставка · курьерский сервис</div>
+      <div class="project-title">Delivery Ace</div>
+      <div class="project-desc">Протоколы доставки, работа с клиентами, нештатные ситуации. Симуляция запущена за 1 неделю с момента брифа.</div>
       <div class="project-result">
-        <div class="project-result-num">90 мин</div>
-        <div class="project-result-label">вместо 8 часов<br>традиционного инструктажа</div>
+        <div class="project-result-num">−40%</div>
+        <div class="project-result-label">времени до<br>самостоятельной работы</div>
       </div>
     </div>
   </div>
@@ -497,7 +703,7 @@
         </div>
         <div class="cta-contact-line">
           <span class="contact-chip">Email</span>
-          <span class="contact-val">egor@praxipolis.com</span>
+          <span class="contact-val">eg@axione.ai</span>
         </div>
         <div class="cta-contact-line">
           <span class="contact-chip">LinkedIn</span>
