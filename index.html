@@ -660,6 +660,25 @@
     color: var(--slate-mid); border: 1px solid var(--border);
     padding: 2px 7px; border-radius: 10px;
   }
+
+  /* Mobile overrides (после base styles, чтобы перекрыть) */
+  @media screen and (max-width: 760px) {
+    .segments-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5vw;
+      margin-bottom: 5vw;
+    }
+    .projects-grid {
+      grid-template-columns: 1fr !important;
+      gap: 4vw;
+      margin-bottom: 5vw;
+    }
+    .bottom-grid {
+      grid-template-columns: 1fr !important;
+      gap: 5vw;
+      margin-bottom: 5vw;
+    }
+  }
 </style>
 
   <!-- SECTION: СЕГМЕНТЫ -->
