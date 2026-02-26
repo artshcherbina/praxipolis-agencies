@@ -594,6 +594,12 @@
     border: 1px solid rgba(200,124,26,0.25); border-radius: 3px; padding: 2px 5px; white-space: nowrap;
   }
   .contact-val { font-size: 10px; color: var(--stone-warm); }
+  a.contact-val {
+    color: var(--stone-warm);
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold-400);
+  }
+  a.contact-val:hover { border-bottom-color: var(--gold-300); }
 
   /* ── FOOTER ── */
   footer {
@@ -699,15 +705,15 @@
       <div class="cta-contacts">
         <div class="cta-contact-line">
           <span class="contact-chip">Web</span>
-          <span class="contact-val">praxipolis.com</span>
+          <a class="contact-val" href="https://praxipolis.com" target="_blank" rel="noopener">praxipolis.com</a>
         </div>
         <div class="cta-contact-line">
           <span class="contact-chip">Email</span>
-          <span class="contact-val">eg@axione.ai</span>
+          <a class="contact-val" href="mailto:eg@axione.ai">eg@axione.ai</a>
         </div>
         <div class="cta-contact-line">
           <span class="contact-chip">LinkedIn</span>
-          <span class="contact-val">linkedin.com/in/egor-grishchenko-1815295/</span>
+          <a class="contact-val" href="https://linkedin.com/in/egor-grishchenko-1815295" target="_blank" rel="noopener">linkedin.com/in/egor-grishchenko-1815295</a>
         </div>
       </div>
     </div>
