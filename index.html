@@ -33,6 +33,26 @@
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
+  /* ── АНИМАЦИИ ── */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes lineExpand {
+    from { transform: scaleX(0); transform-origin: left; }
+    to { transform: scaleX(1); transform-origin: left; }
+  }
+  @media print {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+
   @page { size: A4; margin: 0; }
 
   body {
@@ -98,7 +118,10 @@
     margin-bottom: 7mm;
   }
 
-  .logo { display: flex; align-items: center; gap: 8px; }
+  .logo {
+    display: flex; align-items: center; gap: 8px;
+    transition: opacity 0.2s ease;
+  }
   /* Logo mark — 2×2 coloured tiles (matches landing page) */
   .logo-mark-grid {
     width: 26px;
@@ -118,6 +141,11 @@
   .logo-mark-grid s:nth-child(2) { background: var(--blue-500); }
   .logo-mark-grid s:nth-child(3) { background: var(--blue-400); }
   .logo-mark-grid s:nth-child(4) { background: var(--gold-500); opacity: .55; }
+  .logo-mark-grid s { transition: transform 0.2s ease; }
+  @media (hover: hover) {
+    .logo:hover .logo-mark-grid s:nth-child(1) { transform: scale(1.15); }
+    .logo:hover .logo-mark-grid s:nth-child(4) { transform: scale(0.88); }
+  }
   .logo-text {
     font-family: 'Cormorant Garamond', serif;
     font-size: 15px; font-weight: 600;
@@ -136,11 +164,14 @@
 
   /* ── HERO ── */
   .hero { margin-bottom: 6mm; }
+  .hero h1 { animation: fadeInUp 0.6s ease-out 0.1s both; }
+  .hero-sub { animation: fadeInUp 0.6s ease-out 0.2s both; }
 
   .hero-label {
     font-family: 'JetBrains Mono', monospace;
     font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase;
     color: var(--gold-400); margin-bottom: 4mm;
+    animation: fadeIn 0.5s ease-out both;
     display: flex; align-items: center; gap: 8px;
   }
   .hero-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--gold-400); }
@@ -167,6 +198,15 @@
     border-left: 3px solid var(--gold-500);
     border-radius: 6px; padding: 5mm 6mm; margin-bottom: 6mm;
     display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4mm;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+  @media (hover: hover) {
+    .pain-block:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.3), 0 0 0 1px rgba(232,184,90,0.2);
+      border-color: rgba(232,184,90,0.4);
+      border-left-color: var(--gold-300);
+    }
   }
   .pain-stat {
     font-family: 'Cormorant Garamond', serif;
@@ -174,6 +214,12 @@
     color: var(--gold-300); line-height: 1; margin-bottom: 2px;
   }
   .pain-label { font-size: 11px; font-weight: 400; color: var(--slate-light); line-height: 1.4; }
+  .pain-item {
+    animation: fadeInUp 0.5s ease-out both;
+  }
+  .pain-item:nth-child(1) { animation-delay: 0.1s; }
+  .pain-item:nth-child(2) { animation-delay: 0.2s; }
+  .pain-item:nth-child(3) { animation-delay: 0.3s; }
 
   /* ── SECTION TITLES ── */
   .section-title {
@@ -192,6 +238,8 @@
     flex: 1;
     height: 1px;
     background: var(--border-gold);
+    transform-origin: left;
+    animation: lineExpand 1s ease-out 0.3s both;
   }
 
   /* ── VALUE PROPS FOR AGENCIES ── */
@@ -203,6 +251,18 @@
     background: linear-gradient(135deg, rgba(30,45,138,0.35), rgba(15,21,56,0.55));
     border: 1px solid var(--border); border-radius: 8px; padding: 4.5mm 5mm;
     position: relative; overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    animation: fadeInUp 0.5s ease-out both;
+  }
+  .agency-value-card:nth-child(1) { animation-delay: 0.15s; }
+  .agency-value-card:nth-child(2) { animation-delay: 0.25s; }
+  .agency-value-card:nth-child(3) { animation-delay: 0.35s; }
+  .agency-value-card:nth-child(4) { animation-delay: 0.45s; }
+  @media (hover: hover) {
+    .agency-value-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.35), 0 0 0 1px rgba(232,184,90,0.2);
+    }
   }
   .agency-value-card::before {
     content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
@@ -476,6 +536,20 @@
     align-items: center;
     text-align: center;
     gap: 2mm;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, border-width 0.25s ease;
+    animation: fadeInUp 0.5s ease-out both;
+  }
+  .segment-card:nth-child(1) { animation-delay: 0.1s; }
+  .segment-card:nth-child(2) { animation-delay: 0.18s; }
+  .segment-card:nth-child(3) { animation-delay: 0.26s; }
+  .segment-card:nth-child(4) { animation-delay: 0.34s; }
+  @media (hover: hover) {
+    .segment-card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 16px 36px rgba(0,0,0,0.35);
+      border-color: var(--gold-300);
+      border-width: 1.5px;
+    }
   }
   .segment-icon { display: flex; align-items: center; justify-content: center; }
   .segment-icon svg { width: 28px; height: 28px; }
@@ -498,7 +572,22 @@
     border: 1px solid var(--border); border-radius: 8px; padding: 4mm 5mm;
     background: linear-gradient(135deg, rgba(30,45,138,0.25), rgba(11,15,42,0.5));
     position: relative; overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeInUp 0.5s ease-out both;
   }
+  .project-card:nth-child(1) { animation-delay: 0.1s; }
+  .project-card:nth-child(2) { animation-delay: 0.2s; }
+  .project-card:nth-child(3) { animation-delay: 0.3s; }
+  @media (hover: hover) {
+    .project-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4), 0 0 30px rgba(200,124,26,0.1);
+    }
+    .project-card:hover .project-img img {
+      filter: brightness(0.95) saturate(1);
+    }
+  }
+  .project-img img { transition: filter 0.3s ease; }
   .project-card::after {
     content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
     background: linear-gradient(90deg, var(--blue-400), var(--gold-500)); opacity: 0.4;
@@ -553,6 +642,14 @@
     background: linear-gradient(135deg, rgba(200,124,26,0.08), rgba(30,45,138,0.3));
     border: 1px solid var(--border-gold); border-radius: 8px; padding: 5mm 6mm; margin-bottom: 6mm;
     display: grid; grid-template-columns: 1fr auto; gap: 6mm; align-items: center;
+    animation: fadeInUp 0.5s ease-out 0.2s both;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  @media (hover: hover) {
+    .economics-block:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 48px rgba(200,124,26,0.35), 0 0 0 1px rgba(200,124,26,0.2);
+    }
   }
   .econ-title {
     font-family: 'Cormorant Garamond', serif;
@@ -590,6 +687,13 @@
     border-radius: 8px; padding: 5mm;
     background: linear-gradient(135deg, rgba(42,138,94,0.08), rgba(11,15,42,0.5));
     position: relative; overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  @media (hover: hover) {
+    .offer-block:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(42,138,94,0.3), 0 0 0 1px rgba(42,138,94,0.2);
+    }
   }
   .offer-block::before {
     content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
@@ -624,6 +728,13 @@
     display: flex;
     flex-direction: column;
     gap: 4mm;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  @media (hover: hover) {
+    .cta-block:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(77,95,196,0.45), 0 0 40px rgba(77,95,196,0.2);
+    }
   }
   .cta-bottom-row {
     display: flex;
@@ -673,6 +784,13 @@
     width: 100%;
     height: 100%;
     fill: var(--gold-400);
+    transition: fill 0.2s ease, transform 0.2s ease;
+  }
+  @media (hover: hover) {
+    .cta-contact-line:hover .contact-icon svg {
+      fill: var(--gold-200);
+      transform: scale(1.25);
+    }
   }
   .contact-val { font-size: 10px; color: var(--stone-warm); }
   a.contact-val {
@@ -680,8 +798,12 @@
     text-decoration: underline;
     text-decoration-color: var(--gold-400);
     text-underline-offset: 2px;
+    transition: color 0.2s ease, text-decoration-color 0.2s ease;
   }
-  a.contact-val:hover { text-decoration-color: var(--gold-300); }
+  a.contact-val:hover {
+    color: var(--gold-200);
+    text-decoration-color: var(--gold-300);
+  }
 
   /* ── FOOTER ── */
   footer {
