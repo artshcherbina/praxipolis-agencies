@@ -392,7 +392,7 @@
   <!-- HERO -->
   <div class="hero">
     <div class="hero-label">Для агентств занятости · Польша и ЕС</div>
-    <h1>Ваши клиенты хотят сотрудников <em>готовых с первого дня.</em>
+    <h1>Ваши клиенты хотят сотрудников<br><em>готовых с первого дня.</em>
     <br><strong>Теперь вы это гарантируете.</strong></h1>
     <p class="hero-sub">Тренажёр под реальный процесс — склад, фасовка, выкладка, доставка. Кандидат проходит онлайн тренировку до первой смены. Клиент получает человека, который знает, что делать.</p>
   </div>
@@ -402,15 +402,15 @@
   <div class="pain-block">
     <div class="pain-item">
       <div class="pain-stat">70%</div>
-      <div class="pain-label">новых сотрудников увольняются в первые 90 дней — из-за стресса и растерянности</div>
-    </div>
-    <div class="pain-item">
-      <div class="pain-stat">€500+</div>
-      <div class="pain-label">стоит агентству найти замену одному уволенному сотруднику</div>
+      <div class="pain-label">контента забывается за 24 часа</div>
     </div>
     <div class="pain-item">
       <div class="pain-stat">3–5×</div>
-      <div class="pain-label">выше текучка у неподготовленных сотрудников в первые 2 недели</div>
+      <div class="pain-label">выше текучка в первые 90 дней</div>
+    </div>
+    <div class="pain-item">
+      <div class="pain-stat">€500+</div>
+      <div class="pain-label">стоимость замены одного сотрудника</div>
     </div>
   </div>
 
@@ -428,14 +428,14 @@
       <div class="av-desc">Меньше звонков «ваш человек не справляется», меньше повторных замен.</div>
     </div>
     <div class="agency-value-card">
-      <div class="av-num">×3<span class="unit">.5</span></div>
-      <div class="av-title">быстрее усваивают рабочие стандарты</div>
-      <div class="av-desc">Кандидат отрабатывает навык до первой смены — не за счёт времени клиента.</div>
+      <div class="av-num"><span class="unit">×</span>3.5</div>
+      <div class="av-title">Эффективность обучения</div>
+      <div class="av-desc">vs. лекции и видеокурсы</div>
     </div>
     <div class="agency-value-card">
-      <div class="av-num">1<span class="unit"> модуль</span></div>
-      <div class="av-title">для любого потока кандидатов</div>
-      <div class="av-desc">Один тренажёр работает для 50 и для 5 000 человек.</div>
+      <div class="av-num">∞</div>
+      <div class="av-title">Масштабируемость без предела</div>
+      <div class="av-desc">один модуль — для 10 или 10 000 человек</div>
     </div>
   </div>
 
@@ -445,6 +445,37 @@
 <div class="page">
 
 <style>
+  /* ── SEGMENTS ── */
+  .segments-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3mm;
+    margin-bottom: 6mm;
+  }
+  .segment-card {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 4mm 4mm;
+    background: linear-gradient(135deg, rgba(30,45,138,0.2), rgba(11,15,42,0.4));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2mm;
+  }
+  .segment-icon { display: flex; align-items: center; justify-content: center; }
+  .segment-icon svg { width: 28px; height: 28px; }
+  .segment-name {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--stone-white);
+  }
+  .segment-note {
+    font-size: 9px;
+    color: var(--slate-light);
+    line-height: 1.35;
+  }
+
   /* ── PROJECTS ── */
   .projects-grid {
     display: grid; grid-template-columns: repeat(3, 1fr); gap: 3mm; margin-bottom: 6mm;
@@ -618,6 +649,65 @@
     padding: 2px 7px; border-radius: 10px;
   }
 </style>
+
+  <!-- SECTION: СЕГМЕНТЫ -->
+  <div class="section-title">Подходит для</div>
+  <div class="segments-grid">
+    <div class="segment-card">
+      <span class="segment-icon">
+        <!-- Box / Warehouse -->
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M14 3L25 8.5V19.5L14 25L3 19.5V8.5L14 3Z" stroke="#d99a36" stroke-width="1.5" fill="rgba(200,124,26,0.12)"/>
+          <path d="M14 3L14 25" stroke="#d99a36" stroke-width="1" stroke-dasharray="2 2" opacity="0.5"/>
+          <path d="M3 8.5L14 14L25 8.5" stroke="#d99a36" stroke-width="1.5"/>
+          <path d="M8.5 5.75L19.5 11.25" stroke="#d99a36" stroke-width="1" opacity="0.4"/>
+        </svg>
+      </span>
+      <div class="segment-name">Склад / кладовщики</div>
+      <div class="segment-note">Приём, учёт, ТБ, WMS</div>
+    </div>
+    <div class="segment-card">
+      <span class="segment-icon">
+        <!-- Factory -->
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="14" width="22" height="11" rx="1" stroke="#d99a36" stroke-width="1.5" fill="rgba(200,124,26,0.12)"/>
+          <path d="M3 14L10 8V14" stroke="#d99a36" stroke-width="1.5" fill="rgba(200,124,26,0.08)"/>
+          <path d="M10 14L17 8V14" stroke="#d99a36" stroke-width="1.5" fill="rgba(200,124,26,0.08)"/>
+          <rect x="6" y="3" width="4" height="6" rx="1" stroke="#d99a36" stroke-width="1.2" fill="rgba(200,124,26,0.1)"/>
+          <rect x="7" y="18" width="4" height="4" rx="0.5" stroke="#d99a36" stroke-width="1" fill="rgba(200,124,26,0.15)"/>
+          <rect x="17" y="18" width="4" height="4" rx="0.5" stroke="#d99a36" stroke-width="1" fill="rgba(200,124,26,0.15)"/>
+        </svg>
+      </span>
+      <div class="segment-name">Фасовщики / упаковщики</div>
+      <div class="segment-note">Стандарты, скорость, качество</div>
+    </div>
+    <div class="segment-card">
+      <span class="segment-icon">
+        <!-- Shopping cart -->
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 4H6L9 17H21L24 8H9" stroke="#d99a36" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <circle cx="11" cy="21" r="2" stroke="#d99a36" stroke-width="1.5" fill="rgba(200,124,26,0.15)"/>
+          <circle cx="19" cy="21" r="2" stroke="#d99a36" stroke-width="1.5" fill="rgba(200,124,26,0.15)"/>
+        </svg>
+      </span>
+      <div class="segment-name">Мерчендайзеры / кассиры</div>
+      <div class="segment-note">Выкладка, возвраты, стандарты</div>
+    </div>
+    <div class="segment-card">
+      <span class="segment-icon">
+        <!-- Delivery truck -->
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="10" width="16" height="11" rx="1" stroke="#d99a36" stroke-width="1.5" fill="rgba(200,124,26,0.12)"/>
+          <path d="M18 14H22L25 18V21H18V14Z" stroke="#d99a36" stroke-width="1.5" stroke-linejoin="round" fill="rgba(200,124,26,0.1)"/>
+          <circle cx="7" cy="22" r="2" stroke="#d99a36" stroke-width="1.5" fill="rgba(200,124,26,0.15)"/>
+          <circle cx="21" cy="22" r="2" stroke="#d99a36" stroke-width="1.5" fill="rgba(200,124,26,0.15)"/>
+          <path d="M2 14H12" stroke="#d99a36" stroke-width="1" opacity="0.4"/>
+        </svg>
+      </span>
+      <div class="segment-name">Курьеры / водители</div>
+      <div class="segment-note">Маршруты, нештатные ситуации</div>
+    </div>
+  </div>
 
   <!-- SECTION: ПРИМЕРЫ ПРОЕКТОВ -->
   <div class="section-title">Примеры проектов</div>
