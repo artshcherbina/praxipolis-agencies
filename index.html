@@ -272,10 +272,15 @@
   .av-num {
     font-family: 'Cormorant Garamond', serif;
     font-size: 32px; font-weight: 600;
-    color: var(--stone-white); line-height: 1; margin-bottom: 1.5mm;
+    color: var(--gold-300);
+    line-height: 1; margin-bottom: 1.5mm;
   }
-  .av-num .unit { font-size: 18px; color: var(--gold-400); }
-  .av-title { font-size: 11px; font-weight: 600; color: var(--stone-warm); margin-bottom: 1mm; }
+  .av-num .unit { font-size: 18px; color: var(--gold-300); }
+  .av-title {
+    font-size: 11px; font-weight: 600;
+    color: var(--stone-white);
+    margin-bottom: 1mm;
+  }
   .av-desc { font-size: 10px; color: var(--slate-light); line-height: 1.45; }
 
   /* ══════════════════════════════════════════
@@ -467,7 +472,7 @@
   <div class="hero">
     <div class="hero-label">Для агентств занятости · Польша и ЕС</div>
     <h1>Ваши клиенты хотят сотрудников<br><em>готовых с первого дня.</em>
-    <br><strong>Теперь вы это гарантируете.</strong></h1>
+    <br><strong>Теперь вы это можете гарантировать.</strong></h1>
     <p class="hero-sub">Тренажёр под реальный процесс — склад, фасовка, выкладка, доставка. Кандидат проходит онлайн тренировку до первой смены. Клиент получает человека, который знает, что делать.</p>
   </div>
 
@@ -492,8 +497,8 @@
   <div class="section-title">Что это даёт вашему агентству</div>
   <div class="agency-value-grid">
     <div class="agency-value-card">
-      <div class="av-num">↑<span class="unit"> Конкурентное</span></div>
-      <div class="av-title">преимущество на рынке</div>
+      <div class="av-num">↑</div>
+      <div class="av-title">Конкурентное преимущество на рынке</div>
       <div class="av-desc">Кандидаты приходят к клиенту уже подготовленными под его процессы — без затрат его времени.</div>
     </div>
     <div class="agency-value-card">
@@ -536,7 +541,7 @@
     align-items: center;
     text-align: center;
     gap: 2mm;
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, border-width 0.25s ease;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
     animation: fadeInUp 0.5s ease-out both;
   }
   .segment-card:nth-child(1) { animation-delay: 0.1s; }
@@ -545,10 +550,9 @@
   .segment-card:nth-child(4) { animation-delay: 0.34s; }
   @media (hover: hover) {
     .segment-card:hover {
-      transform: translateY(-8px) scale(1.03);
-      box-shadow: 0 16px 36px rgba(0,0,0,0.35);
+      transform: translateY(-6px);
+      box-shadow: 0 16px 36px rgba(0,0,0,0.35), 0 0 0 1px var(--gold-300);
       border-color: var(--gold-300);
-      border-width: 1.5px;
     }
   }
   .segment-icon { display: flex; align-items: center; justify-content: center; }
